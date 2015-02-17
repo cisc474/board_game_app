@@ -5,7 +5,9 @@ This is intended as an excuse to build your first API.
 
 If you mimick what I have done then you will have built a (kinda) LAMP stack (Linux, Apache, MySql, PHP).  
 
-When that term came to power was when PHP was used for most new websites as a way of making dynamic pages (rendered on the servers).  I like to think of the new era of LAMP as PHP for API purposes.  I went with PHP because it is the easiest server-side solution to play with.  We will explore others (or if you want to go your own way on this you can).
+When that term came to power was when PHP was used for most new websites as a way of making dynamic pages (rendered on the servers).  I like to think of the new era of LAMP as PHP for API purposes.  I went with PHP because it is the easiest server-side solution to play with.  We will explore others.
+
+If you really want to play with scripting, nodejs, or mongodb then I have provided a csv file with the data and you can hack at it anyway you see fit.  Just share you code with me here on github (it won't be public).
 
 ## The Database
 My database has a single table *games* the column names come from BoardGameGeek.com's collection system (from now on BGG).
