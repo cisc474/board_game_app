@@ -32,4 +32,17 @@ Cloud9 will generate a public url for you to send me.  They also will simulate f
 
     sudo apt-get install php5-sqlite
 
+If you want to work on a GitHub Project from Cloud9 do the following:
+
++ fork this repo
++ clone that repo in cloud9
++ get the php-sqlite package using apt-get
++ edit files
++ commit and push
+
+To commit and push from the command line use two commands roughly like this:
+
+    git commit -am 'I fixed the pdo connection'
+    git push
+
 See the class website for more tutorial-style guidance.
