@@ -4,7 +4,6 @@ $(document).ready(function(){
         defaults : { "game" : "This is a game"},
         description: function(){
             var template = _.template("<%= game %> :: for <%= minplayers %> to <%= maxplayers %> players in <%= playingtime %> minutes");
-            console.log(this.toJSON());
             return template(this.toJSON());
         }
     });
@@ -38,7 +37,6 @@ $(document).ready(function(){
                            var that = this;
                            this.games.each(function(game){
                                var gameView = new GameView({model: game});
-                               console.log(gameView);
                                that.$("#game-list").append(gameView.render().el);
                            });
                        }
