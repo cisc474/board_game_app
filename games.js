@@ -16,7 +16,7 @@ $(document).ready(function(){
       };
       
       $(".game").click(function(ev){
-        var j = parseInt($(ev.currentTarget).attr('data-index'));
+        var j = parseInt($(ev.currentTarget).data('index'));
         var game_json = games_list[j];
         alert(game_json.game + " :: "+game_json.playingtime + " minutes");
       });
