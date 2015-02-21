@@ -30,6 +30,20 @@ I recommend using cloud9, my version is here at https://ide.c9.io/andynovo/board
 
 Cloud9 will generate a public url for you to send me.  They also will simulate for you the experience of working from a server via a command line interface (common when working with servers, see SSH).  In order to get PHP to talk to SQLITE databases I had run the following command from the command-line:
 
+    sudo apt-get update
     sudo apt-get install php5-sqlite
+
+If you want to work on a GitHub Project from Cloud9 do the following:
+
++ fork this repo
++ clone that repo in cloud9
++ get the php-sqlite package using apt-get
++ edit files
++ commit and push
+
+To commit and push from the command line use two commands roughly like this:
+
+    git commit -am 'I fixed the pdo connection'
+    git push
 
 See the class website for more tutorial-style guidance.
