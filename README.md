@@ -10,7 +10,7 @@ When that term came to power was when PHP was used for most new websites as a wa
 If you really want to play with scripting, nodejs, or mongodb then I have provided a csv file with the data and you can hack at it anyway you see fit.  Just share you code with me here on github (it won't be public).
 
 ## The Database
-My database has a single table *games* the column names come from BoardGameGeek.com's collection system (from now on BGG).
+My database started with a single table *games* the column names come from BoardGameGeek.com's collection system (from now on BGG).  I then used python to scrape the boardgamegeek API for more data about my games in particular.  This data is saved in the *extra* table.
 
 The *games* table has 9 columns:
 
@@ -23,6 +23,26 @@ The *games* table has 9 columns:
 + maxplayers *maximum number of players*
 + playingtime *number of minutes to play the game (in the worst case)*
 + bggbestplayers *recommended number of players (three versions, NA is no guidance, a single number is the only recommended number of players, a-- b-- c means a b and c are recommended for this game)*
+
+The *extra* table has five columns:
+
++ objectid *matches the games table*
++ description *a long description of the game*
++ thumbnail *a url for a boardgamegeek thumbnail of this game's box cover (format: //domain.com/filename so insert your own protocol or rely on the browser)*
++ image *a url for a larger bgg image of this game*
++ categories *an Andy crafted string with many common words describing the game joined together by " @@ "*
+
+If you are interested in server-side scripting I have provided the Python script I used to create the new table.  It gathers the objectid values and for each one consults the 3rd-party BGG XML API for additional data.  That data is parsed and converted into a format that works for us.  This is our first round of *web-scraping* and it is one of many options for playing with 3rd-party services.
+
+
+Two SQL commands to be aware of:
+
+    select objectname, thumbnail from games JOIN extra on (games.objectid = extra.objectid)
+    select objectname from games where bggbestplayers LIKE '%3%'
+
+*JOIN* is a way of gluing together results from two tables, there will be an *ON* statement which says which column in your left table matches which column in your right table.  In the above example I will glue *games* to *extra* on *objectid* and return *objectname* from *games* and *thumbnail* from *extra*.  There are several types of *JOIN*s namely *LEFT JOIN* *RIGHT JOIN* *INNER JOIN* *OUTER JOIN* and plain old *JOIN*.  These will vary whether or not to return a row when either the left or right column doesn't have a match.
+
+*LIKE* is a conditional statement which can stand-in for *=* and allows wild-cards.  So if I want to find all games which are recommended for 3 players I could use the above statement (*%* is a wildcard).  In this case any rows for which the string from the given column contains the digit 3 would be returned.
 
 ## Hosting your API
 

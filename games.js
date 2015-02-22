@@ -12,11 +12,15 @@ $(document).ready(function(){
       games_list = data;
       
       for (var i = 0; i < data.length; i++) {
-          $('.games').append("<li class=\"game\" data-index="+i+">"+data[i].game+ " :: "+data[i].playingtime +" minutes</li>");
+          $('#jq-games').append("<li class=\"game\" title=\""+data[i].description+
+          "\" data-index="+i+
+          "><span class=\"bgg_thumb_wrapper\"><img class=\"bgg_thumb\" src=\"http:"
+          +data[i].thumbnail+"\"/></span>"+data[i].game+ " :: "+data[i].playingtime 
+          +" minutes</li>");
       };
       
-      $(".game").click(function(ev){
-        var j = parseInt($(ev.currentTarget).data('index'));
+      $("#jq-games .game").click(function(ev){
+        var j = parseInt($(ev.currentTarget).attr('data-index'));
         var game_json = games_list[j];
         alert(game_json.game + " :: "+game_json.playingtime + " minutes");
       });
@@ -29,4 +33,3 @@ $(document).ready(function(){
     
   });
 });
-

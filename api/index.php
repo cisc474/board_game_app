@@ -19,12 +19,9 @@ if ($request == "/games") {
     $dbhandle = new PDO("sqlite:bgg.sqlite") or die("Failed to open DB");
     if (!$dbhandle) die ($error);
  
-    $query = "SELECT objectname as game,
-          rank,
-          maxplayers,
-          minplayers,
-          playingtime
-          from games order by random() limit 0, 10";
+    $query = "SELECT objectname as game, games.objectid, rank, playingtime, minplayers, maxplayers,
+          thumbnail, image, description, categories
+          from games left join extra on (games.objectid = extra.objectid) order by random() limit 0, 10";
     $statement = $dbhandle->prepare($query);
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
