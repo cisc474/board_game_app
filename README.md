@@ -32,10 +32,19 @@ The *extra* table has five columns:
 + image *a url for a larger bgg image of this game*
 + categories *an Andy crafted string with many common words describing the game joined together by " @@ "*
 
-If you are interested in server-side scripting I have provided the Python script I used to create the new table.  It gathers the objectid values and for each one consults the 3rd-party BGG XML API for additional data.  That data is parsed and converted into a format that works for us.  This is our first round of *web-scraping* and it is one of many options for playing with 3rd-party services.
+If you are interested in server-side scripting I have provided the Python script I used to create the new table.  It gathers the objectid values and for each one consults the 3rd-party BGG XML API for additional data.  That data is parsed and converted into a format that works for us.  This is our first round of *web-scraping* and it is one of many options for playing with 3rd-party services.  If you want to run my script BeautifulSoup was not natively installed on cloud9 so I ran this command to get it:
+
+    sudo apt-get install python-bs4
+
+Then
+
+    cd api
+    python ./fetch_desc_bs4.py
+
+It should output gameid and categories for each game, will take 3-5 minutes to run, after that you'll have an extra table. 
 
 
-Two SQL commands to be aware of:
+**Two SQL commands to be aware of:**
 
     select objectname, thumbnail from games JOIN extra on (games.objectid = extra.objectid)
     select objectname from games where bggbestplayers LIKE '%3%'
