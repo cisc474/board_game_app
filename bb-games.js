@@ -7,7 +7,7 @@ var Game = Backbone.Model.extend({
         return template(this.toJSON());
     },
     image_data : function(){
-        var template = _.template("<span class=\"bgg_thumb_wrapper\"><img class=\"bgg_thumb\" src=\"http:<%= thumbnail %>\"/></span>");
+        var template = _.template("<span class=\"thumb_wrapper\"><img class=\"thumb\" src=\"http:<%= thumbnail %>\"/></span>");
         return template(this.toJSON());
     }
 });
@@ -25,7 +25,8 @@ var GameView = Backbone.View.extend({
         alert(this.model.description());  
     },
     render : function(){
-        this.$el.html(this.model.image_data()+this.model.description());
+        var textpart = "<span class=\"txt\">"+this.model.description()+"</span>";
+        this.$el.html(this.model.image_data()+textpart);
         this.$el.attr("title", this.model.get("description"));
         return this;
     }

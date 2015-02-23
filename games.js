@@ -14,9 +14,9 @@ $(document).ready(function(){
       for (var i = 0; i < data.length; i++) {
           $('#jq-games').append("<li class=\"game\" title=\""+data[i].description+
           "\" data-index="+i+
-          "><span class=\"bgg_thumb_wrapper\"><img class=\"bgg_thumb\" src=\"http:"
-          +data[i].thumbnail+"\"/></span>"+data[i].game+ " :: "+data[i].playingtime 
-          +" minutes</li>");
+          "><span class=\"thumb_wrapper\"><img class=\"thumb\" src=\"http:"
+          +data[i].thumbnail+"\"/></span><span class=\"txt\">"+data[i].game+ " :: "+data[i].playingtime 
+          +" minutes</span></li>");
       };
       
       $("#jq-games .game").click(function(ev){
@@ -32,4 +32,15 @@ $(document).ready(function(){
     }
     
   });
+  
+  $("#gridmode").click(function(){
+    $(".txt").hide();
+    $(".game").removeClass("line");
+  });
+  
+  $("#listmode").click(function(){
+      $(".txt").show();
+      $(".game").addClass("line");
+  });  
+  
 });
