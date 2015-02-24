@@ -19,14 +19,27 @@
         <span class="glyphicon glyphicon-th-list" aria-hidden="true" id="listmode"></span>
         <hr/>
         <strong>jQuery Version</strong>
+        <!-- The jQuery version is the most straight forward and probably more 
+        appropriate for this size app than the other two, but you have to start 
+        somewhere with making full-size modular applications.-->
         <ul class="games" id="jq-games">
         </ul>
         <hr/>
+        <!-- This begins the Angular version, the directive ng-app says that this
+        will be the element which sampleapp (a module) can have dominion over-->
         <div ng-app="sampleapp">
+            <!-- ng-controller tells the module which controller this "view" will
+            use to manage the activities -->
             <div ng-controller="GameController">
                 <strong>Angular version</strong>
                 <ul class="games">
+                    <!-- ng-repeat is a directive which will execute the "code" in the value
+                    and repeat this element as many times as it needs to.  Each time with a new scope.  
+                    Inside of that controller I will hit the API and load an array of games, each game will have 
+                    an alert method and several properties that can be referenced as indicated in the next comment -->
                     <li ng-repeat="game in games" ng-click="game.alert()" class="game" title="{{game.description}}">
+                        <!-- {{ blah }} is a notation that will evaluate the contents from the "scope" 
+                        for instance {{game.thumbnail}} will inject this game's thumbnail value-->
                         <span class="thumb_wrapper"><img class="thumb" src="http:{{game.thumbnail}}"/></span>
                         <span class="txt">
                             {{game.game}} :: for {{game.minplayers}} to {{game.maxplayers}} players in {{game.playingtime}} minutes
@@ -36,6 +49,16 @@
             </div>
         </div>
         <hr/>
+        <!-- This is my backbone app, they all do the same thing but I wanted to give a 
+        flavor for how jQuery, Angular, and Backbone are all different.  In this case I might not 
+        typically have an id saying bb-app I often only have <body></body> as my base html for a backbone app.
+        Unlike Angular (which is http extended to be dynamic) Backbone is all about 
+        rendering.  The views can render themselves into off-screen elements for fast page loading.
+    
+        Here I chose to have a basic ul tag to really launch from.
+
+        Like Angular both apps have an element that the app has domain over.
+        -->
         <div id="bb-app">
             <strong>Backbone version</strong>
             <ul class="games" id="game-list">
